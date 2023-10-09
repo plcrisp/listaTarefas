@@ -7,16 +7,19 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #06728d;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         #app {
             max-width: 400px;
-            margin: 0 auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: #ffffff;
             border-radius: 5px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         }
@@ -32,15 +35,18 @@
         }
 
         li {
-            margin: 5px 0;
-            padding: 5px;
+            margin: 10px 0;
+            padding: 10px;
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 3px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         input[type="text"] {
-            width: 92%;
+            width: 95%;
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ddd;
@@ -66,8 +72,8 @@
     <div id="app">
         <h1>Planejamento</h1>
         <ul></ul>
-        <input id="tarefa" type="text" placeholder="Digite uma tarefa..." /><br><br>
-        <input id="deadline" type="text" placeholder="Digite sua deadline... (DD-MM-AAAA)" /><br><br>
+        <input id="tarefa" type="text" placeholder="Digite uma tarefa..." />
+        <input id="deadline" type="text" placeholder="Digite sua deadline... (DD-MM-AAAA)" />
         <button>Adicionar</button>
     </div>
 

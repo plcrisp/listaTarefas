@@ -56,6 +56,8 @@ function adicionarTarefa(){
     }else if(inputDeadline.value === ""){
         alert("Digite a deadline da sua tarefa!");
         return false;
+    }else if(inputDeadline.value[2]!='/'||inputDeadline.value[5]!='/'){
+        alert("Insira uma data válida!");
     }else{
         let tarefaDigitada: Tarefa = {
             t: inputTarefa.value,

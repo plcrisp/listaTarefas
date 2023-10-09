@@ -1,17 +1,28 @@
 let listElement = document.querySelector("#app ul") as HTMLUListElement;
-let inputElement = document.querySelector("#app input") as HTMLInputElement;
+let inputTarefa = document.querySelector("#tarefa") as HTMLInputElement;
+let inputDeadline = document.querySelector("#deadline") as HTMLInputElement;
 let buttonElement = document.querySelector("#app button") as HTMLElement;
 
 
-let listaSalva: (string | null) = localStorage.getItem("@listagem_tarefas");
-let tarefas: string[] = listaSalva !== null && JSON.parse(listaSalva) || [];
+let listaSalva = localStorage.getItem("@listagem_tarefas");
+let tarefas: Tarefa[] = listaSalva !== null && JSON.parse(listaSalva) || [];
 
-function listarTarefas(){
-    listElement.innerHTML = ""
+type Tarefa = {
+    t: string;
+    data: string;
+}
 
-    tarefas.map ( item => {
-        let todoELement = document.createElement("li");
-        let tarefaText = document.createTextNode(item);
+function listarTarefas() {
+    listElement.innerHTML = "";
+
+    tarefas.map((item) => {
+        let todoElement = document.createElement("li");
+
+        let tarefaText = document.createElement("span");
+        tarefaText.textContent = `${item.t} até `;
+
+        let deadlineText = document.createElement("span");
+        deadlineText.textContent = `${item.data} `;
 
         let linkElement = document.createElement("a");
         linkElement.setAttribute("href", "#");
@@ -24,26 +35,36 @@ function listarTarefas(){
         let linkText = document.createTextNode("Excluir");
         linkElement.appendChild(linkText);
 
-        todoELement.appendChild(tarefaText);
-        todoELement.appendChild(linkElement);
-        listElement.appendChild(todoELement);
-
-        
-        
-    })
+        todoElement.appendChild(tarefaText);
+        todoElement.appendChild(deadlineText);
+        todoElement.appendChild(linkElement);
+        listElement.appendChild(todoElement);
+    });
 }
+
+
 
 listarTarefas();
 
 function adicionarTarefa(){
-    if(inputElement.value === ""){
-        alert("Digite alguma tarefa!");
+    if(inputTarefa.value === "" && inputDeadline.value === ""){
+        alert("Digite alguma tarefa tarefa e sua deadline!");
+        return false;
+    }else if(inputTarefa.value === ""){
+        alert("Digite alguma tarefa tarefa!");
+        return false;
+    }else if(inputDeadline.value === ""){
+        alert("Digite a deadline da sua tarefa!");
         return false;
     }else{
-        let tarefaDigitada: string = inputElement.value;
+        let tarefaDigitada: Tarefa = {
+            t: inputTarefa.value,
+            data: inputDeadline.value,
+        } 
         tarefas.push(tarefaDigitada);
 
-        inputElement.value = "";
+        inputTarefa.value = "";
+        inputDeadline.value = "";
 
         listarTarefas();
 

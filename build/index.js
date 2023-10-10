@@ -8,7 +8,6 @@ let listaSalva = localStorage.getItem("@listagem_tarefas");
 let tarefas = listaSalva !== null && JSON.parse(listaSalva) || [];
 function listarTarefas() {
     tarefas.sort((a, b) => {
-        // Use a ordem das prioridades para determinar a ordem de classificação
         const prioridades = ['ALTA', 'MEDIA', 'BAIXA'];
         return prioridades.indexOf(a.prioridade) - prioridades.indexOf(b.prioridade);
     });
@@ -38,7 +37,7 @@ function listarTarefas() {
 listarTarefas();
 function adicionarTarefa() {
     if (inputTarefa.value === "" && inputDeadline.value === "") {
-        alert("Digite alguma tarefa tarefa e sua deadline!");
+        alert("Digite alguma tarefa e sua deadline!");
         return false;
     }
     else if (inputTarefa.value === "") {

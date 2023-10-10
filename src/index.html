@@ -17,7 +17,7 @@
         }
 
         #app {
-            max-width: 400px;
+            max-width: 500px;
             padding: 20px;
             background-color: #ffffff;
             border-radius: 5px;
@@ -74,8 +74,17 @@
         <ul></ul>
         <input id="tarefa" type="text" placeholder="Digite uma tarefa..." />
         <input id="deadline" type="text" placeholder="Digite sua deadline... (DD/MM/AAAA)" />
+        <label for="prioridade">Prioridade:</label>
+        <select id="prioridade">
+            <option value="ALTA">Alta</option>
+            <option value="MÉDIA">Média</option>
+            <option value="BAIXA">Baixa</option>
+        </select>
+        <br>
+        <br>
         <button>Adicionar</button>
     </div>
+    
 
     <script src="../build/index.js"></script>
 </body>

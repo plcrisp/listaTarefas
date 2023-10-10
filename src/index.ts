@@ -1,6 +1,7 @@
 let listElement = document.querySelector("#app ul") as HTMLUListElement;
 let inputTarefa = document.querySelector("#tarefa") as HTMLInputElement;
 let inputDeadline = document.querySelector("#deadline") as HTMLInputElement;
+let inputPrioridade = document.querySelector("#prioridade") as HTMLSelectElement;
 let buttonElement = document.querySelector("#app button") as HTMLElement;
 
 
@@ -10,9 +11,16 @@ let tarefas: Tarefa[] = listaSalva !== null && JSON.parse(listaSalva) || [];
 type Tarefa = {
     t: string;
     data: string;
+    prioridade: string;
 }
 
 function listarTarefas() {
+    tarefas.sort((a, b) => {
+        // Use a ordem das prioridades para determinar a ordem de classificação
+        const prioridades = ['ALTA', 'MEDIA', 'BAIXA'];
+        return prioridades.indexOf(a.prioridade) - prioridades.indexOf(b.prioridade);
+    });
+
     listElement.innerHTML = "";
 
     tarefas.map((item) => {
@@ -22,7 +30,10 @@ function listarTarefas() {
         tarefaText.textContent = `${item.t} até `;
 
         let deadlineText = document.createElement("span");
-        deadlineText.textContent = `${item.data} `;
+        deadlineText.textContent = `${item.data}. `;
+
+        let prioridadeText = document.createElement("span");
+        prioridadeText.textContent = `Prioridade: ${item.prioridade} `;
 
         let linkElement = document.createElement("a");
         linkElement.setAttribute("href", "#");
@@ -37,6 +48,7 @@ function listarTarefas() {
 
         todoElement.appendChild(tarefaText);
         todoElement.appendChild(deadlineText);
+        todoElement.appendChild(prioridadeText);
         todoElement.appendChild(linkElement);
         listElement.appendChild(todoElement);
     });
@@ -62,11 +74,13 @@ function adicionarTarefa(){
         let tarefaDigitada: Tarefa = {
             t: inputTarefa.value,
             data: inputDeadline.value,
+            prioridade: inputPrioridade.value
         } 
         tarefas.push(tarefaDigitada);
 
         inputTarefa.value = "";
         inputDeadline.value = "";
+        inputPrioridade.value = "ALTA";
 
         listarTarefas();
 

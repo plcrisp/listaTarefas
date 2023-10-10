@@ -62,7 +62,7 @@ function adicionarTarefa(){
         alert("Digite alguma tarefa e sua deadline!");
         return false;
     }else if(inputTarefa.value === ""){
-        alert("Digite alguma tarefa tarefa!");
+        alert("Digite alguma tarefa!");
         return false;
     }else if(inputDeadline.value === ""){
         alert("Digite a deadline da sua tarefa!");

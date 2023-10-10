@@ -41,7 +41,7 @@ function adicionarTarefa() {
         return false;
     }
     else if (inputTarefa.value === "") {
-        alert("Digite alguma tarefa tarefa!");
+        alert("Digite alguma tarefa!");
         return false;
     }
     else if (inputDeadline.value === "") {
